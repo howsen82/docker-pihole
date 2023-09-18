@@ -17,6 +17,8 @@ services:
     mem_limit: 2g
     cpu_shares: 768
     network_mode: host
+    cap_add:
+      - NET_ADMIN
     restart: unless-stopped
 
 # 192.168.1.100:8080/admin
