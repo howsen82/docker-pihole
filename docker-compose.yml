@@ -1,0 +1,22 @@
+version: '3.9'
+
+services:
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:latest
+    environment:
+      WEB_PORT: 8080
+      WEBPASSWORD: password
+      WEB_BIND_ADDR: 192.168.1.100
+      TZ: Asia/Kuching
+      DNSMASQ_USER: root
+      DNSMASQ_LISTENING: local
+    volumes:
+      - /data/pihole/dnsmasq.d:/etc/dnsmasq.d:rw
+      - /data/pihole/pihole:/etc/pihole:rw
+    mem_limit: 2g
+    cpu_shares: 768
+    network_mode: host
+    restart: unless-stopped
+
+# 192.168.1.100:8080/admin
